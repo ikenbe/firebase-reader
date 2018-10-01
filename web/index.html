@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- load CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="/__/firebase/5.5.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/5.5.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.5.1/firebase-functions.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+</head>
+
+<body class="">
+    <header class="header">
+        <h1>Rapid Reader RAP阅读</h1>
+    </header>
+    <div class="main" id="main">
+        <div class="">
+            <div class="card">
+                <div class="card-content white-text">
+                    <div class="card-title">输入即将阅读的文字：</div>
+                    <textarea class="materialize-textarea textarea" id="inputArea"></textarea>
+                </div>
+                <div class="controlcontainer">
+                    <button class="controlbutton" id="add-text"><i class="material-icons">note_add</i></button>
+                </div>
+                <div class="controlcontainer">
+                </div>
+            </div>
+        </div>
+
+        <div id="listContainer">
+        </div>
+        <div class="read-container">
+            <div id="close-button"><i class="material-icons">clear</i></div>
+            <div id="readplayer">
+                <div class="playergrid col-2" id="">
+                    <pretext></pretext>
+                </div>
+                <div class="playergrid col-6">
+                    <current></current>
+                </div>
+                <div class="playergrid col-2">
+                    <postext></postext>
+                </div>
+            </div>
+            <div class="read-control">
+                <div class="slidecontainer">
+                    <div>SPEED</div>
+                    <input type="range" min="-100" max="100" value="0" class="slider" id="speed-slider">
+                </div>
+                <div class="controlcontainer">
+                    <button class="controlbutton" id="pause-stream"><i class="material-icons">pause</i></button>
+                </div>
+                <div class="controlcontainer">
+                    <button class="controlbutton" id="replay"><i class="material-icons">replay</i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>iKen 2018</footer>
+    <!-- SCRIPTS ADD BELOW -->
+    <script src="./app.js"></script>
+</body>
+
+</html>
