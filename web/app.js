@@ -23,10 +23,16 @@ function app() {
         console.log(this.value)
         textSpeed = this.value;
     }
+    $ID("replay").addEventListener("click", () => {
+        window.para11312 = null;
+        setTimeout(function() { play($(".read-container")[0].getAttribute("current")) }, $("current")[0].innerText.length * 20 + 200 - (textSpeed) * 2);
+        $("current")[0].innerText = "";
+    })
 
     // Functions
     function play(id) {
         $(".read-container")[0].setAttribute("style", "display:block");
+        $(".read-container")[0].setAttribute("current", id);
         var textFlow = $ID("textcard-" + id).getAttribute("text").split("|");
         //console.log(textFlow);
         var textLoc = 0;
@@ -35,8 +41,9 @@ function app() {
     }
 
     function wordStream(textFlow, a) {
-        $("current")[0].innerText = textFlow[a];
-        if (!textFlow[a + 1] || window.para11312 === null) return;
+        if (window.para11312 === null) return;
+        $("current")[0].innerText = textFlow[a]; //+ (textFlow[a].length * 20 + 200 - (textSpeed) * 2);
+        if (!textFlow[a + 1]) return;
         setTimeout(function() {
             wordStream(textFlow, a + 1);
         }, textFlow[a].length * 20 + 200 - (textSpeed) * 2)

@@ -2,9 +2,9 @@
 
 const functions = require('firebase-functions');
 const cors = require('cors')({ origin: true });
-const http = require('http');
+//const http = require('http');
 const fetch = require('node-fetch');
-const Promise = require('promise');
+//const Promise = require('promise');
 const token = 'Zw0W3ei-.16623.DrLIECAJsEM2';
 let postOptions = {
     host: "http://api.bosonnlp.com",
@@ -16,14 +16,10 @@ let postOptions = {
         "X-Token": token
     }
 };
-//const nlp = new BosonNLP('Zw0W3ei-.16623.DrLIECAJsEM2');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
-//let testData;
-//nlp.tag("两只老虎闭一只老虎跑得快还是不快？", resp => testData = resp);
-//
 exports.cors = functions.https.onRequest((req, res) => {
     console.log("This is [req.app]: " + req.app);
     console.log("This is [req.baseUrl]: " + req.baseUrl);
@@ -73,13 +69,6 @@ exports.nlp = functions.https.onCall((data) => {
             //console.log(r);
             return r.json()
         })
-        /*
-                .then(body => {
-                        //console.log(body);
-                        resp = { "data": body };
-                        //return res.send(resp);
-                        return resp;
-                    })*/
         .catch(console.log);
 })
 
