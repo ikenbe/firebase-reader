@@ -74,7 +74,7 @@ exports.nlp = functions.https.onCall((data) => {
 
 exports.webPaser = functions.https.onCall((data) => {
         let fetchMeta = {
-            method: "GET",
+            //method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 "x-api-key": "atLIp1lTKvDdtElc0O2RDjOuEb1LNRBd60q0nOw6"

@@ -1,3 +1,5 @@
 \functions\node_modules\*
 \.firebase\*
 \%RESOURCE_DIR%\*
+firebase-debug.log
+.firebase/hosting.d2Vi.cache

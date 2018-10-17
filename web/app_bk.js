@@ -3,8 +3,7 @@ var $ = document.querySelectorAll.bind(document),
     $ID = document.getElementById.bind(document),
     $newEle = document.createElement.bind(document);
 var cardId = 1,
-    textSpeed = 0,
-    appData = {};
+    textSpeed = 0;
 
 function app() {
     // Variables
@@ -14,7 +13,7 @@ function app() {
         newCard($ID("inputArea").value, "listContainer", cardId++)
     });
     $ID("close-button").addEventListener("click", () => {
-        appData.playing = null;
+        window.para11312 = null;
         $ID("close-button").parentNode.setAttribute("style", "display:none");
         $("pretext")[0].innerText = "";
         $("current")[0].innerText = "";
@@ -25,47 +24,26 @@ function app() {
         textSpeed = this.value;
     }
     $ID("replay").addEventListener("click", () => {
-        appData.playing = null;
-        setTimeout(function() {
-            play(appData.currentID)
-        }, $("current")[0].innerText.length * 20 + 200 - (textSpeed) * 2);
-        $("current")[0].innerText = " ";
-        pauseButtonUI("reset")
-    })
-    $ID("pause-stream").addEventListener("click", () => {
-        if (appData.playing) {
-            appData.playing = null;
-            pauseButtonUI("pause")
-        } else {
-            var textFlow = appData["text" + appData.currentID].split("|");
-            appData.playing = 1;
-            wordStream(textFlow, appData.streamPos);
-            pauseButtonUI("play")
-        }
+        window.para11312 = null;
+        setTimeout(function() { play($(".read-container")[0].getAttribute("current")) }, $("current")[0].innerText.length * 20 + 200 - (textSpeed) * 2);
+        $("current")[0].innerText = "";
     })
 
     // Functions
     function play(id) {
         $(".read-container")[0].setAttribute("style", "display:block");
-        appData.currentID = id;
-        //var textFlow = $ID("textcard-" + id).getAttribute("text").split("|");
-        var textFlow = appData["text" + id].split("|");
+        $(".read-container")[0].setAttribute("current", id);
+        var textFlow = $ID("textcard-" + id).getAttribute("text").split("|");
         //console.log(textFlow);
         var textLoc = 0;
-        appData.playing = 1;
+        window.para11312 = 1;
         wordStream(textFlow, 0)
     }
 
-    function pauseButtonUI(input) {
-        if (input === "pause") $ID("pause-stream").innerHTML = "<i class=\"material-icons\">play_arrow</i>";
-        if (input === "play" || input === "reset") $ID("pause-stream").innerHTML = "<i class=\"material-icons\">pause</i>"
-    }
-
     function wordStream(textFlow, a) {
-        if (appData.playing === null) return a;
+        if (window.para11312 === null) return;
         $("current")[0].innerText = textFlow[a]; //+ (textFlow[a].length * 20 + 200 - (textSpeed) * 2);
-        if (!textFlow[a + 1]) { appData.playing = null; return a; }
-        appData.streamPos = a;
+        if (!textFlow[a + 1]) return;
         setTimeout(function() {
             wordStream(textFlow, a + 1);
         }, textFlow[a].length * 20 + 200 - (textSpeed) * 2)
@@ -77,7 +55,7 @@ function app() {
         ctrl.setAttribute("id", "ctrl" + id);
         var btn1 = newButton("roundbutton",
             function() {
-                if ($ID("textcard-" + id)) { play(id); }
+                if ($ID("textcard-" + id).getAttribute("text")) { play(id); }
             },
             "play",
             "play_arrow");
@@ -110,25 +88,21 @@ function app() {
     }
 
     function newCard(content, parent, cardId) {
-        var workingId = cardId;
         if (content == "") return null;
         var card = document.createElement("div");
         card.setAttribute("class", "textcard");
-        card.setAttribute("id", "textcard-" + workingId);
+        card.setAttribute("id", "textcard-" + cardId);
         card.appendChild(document.createTextNode(content));
         $ID(parent).appendChild(card);
-        $ID(parent).appendChild(textCardControl(workingId));
-        //window["segment" + workingId] = segment;
-        if (content.hasCHN()) { wordSegment(content).then(res => segment(res, workingId)) } else {
-            //$ID("textcard-" + (workingId)).setAttribute("text", content.replace(/\s+/g, "|")) 
-            appData["text" + workingId] = content.replace(/\s+/g, "|");
-        };
+        $ID(parent).appendChild(textCardControl(cardId));
+        window["segment" + cardId] = segment;
+        if (content.hasCHN()) { wordSegment(content).then(res => segment(res)) } else { $ID("textcard-" + (cardId)).setAttribute("text", content.replace(/\s+/g, "|")) };
     }
 
     const wordSegment = firebase.functions().httpsCallable("nlp");
 
 
-    function OLD_wordSegment(text, callback) { //LTP分词
+    function OLD_wordSegment(text, callback) { //分词
         text = fixedURI(text.replace(/[\u201c\u201d\u3002\uff0c\u3001\u2026\u2026\uff1b\uff1a]/g, " "));
         console.log(text);
         var base = "https://api.ltp-cloud.com/analysis/?",
@@ -156,10 +130,9 @@ function localStore(data) {
     }
 }
 
-function segment(data, id) {
+function segment(data) {
     console.log('data received:' + data);
-    if (!id) id = cardId;
-    appData["text" + id] = data.data[0].word.join("|");
+    $ID("textcard-" + (cardId - 1)).setAttribute("text", data.data[0].word.join("|"));
     /*
     var wordlist = [];
     for (var i = 0; i < data.length; ++i) {
