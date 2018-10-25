@@ -6,7 +6,12 @@ var cardId = 1,
     textSpeed = 0,
     appData = {};
 
+// Dependencies
+import { MDCDrawer } from "@material/drawer";
+const drawer = MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
+
 function app() {
+
     // Variables
 
     // Listeners
@@ -160,26 +165,10 @@ function segment(data, id) {
     console.log('data received:' + data);
     if (!id) id = cardId;
     appData["text" + id] = data.data[0].word.join("|");
-    /*
-    var wordlist = [];
-    for (var i = 0; i < data.length; ++i) {
-        for (var j = 0; j < data[i].length; ++j) {
-            for (var k = 0; k < data[i][j].length; ++k) {
-                if (data[i][j][k]["cont"].length > 0) wordlist.push(data[i][j][k]["cont"]);
-            }
-        }
-    }
-    //console.log(wordlist);
-    $ID("textcard-" + (cardId - 1)).setAttribute("text", wordlist.join("|"));
-    //localStore(wordlist.join("|"));
-    */
 }
 
 function fixedURI(str) {
     str = str.replace(" for ", " %66%6fr ").replace(" or ", " %6fr ").replace(" in ", " %69%6e "); // Server returns error  when includes "for"/"or"/"in"
-    //return encodeURIComponent(str).replace(/《》[!'()*]/g, function(c) {
-    //    return '%' + c.charCodeAt(0).toString(16);
-    //});
     return str.replace(/《》[!'()*]/g, function(c) {
         return '%' + c.charCodeAt(0).toString(16);
     });;

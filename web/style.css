@@ -17,10 +17,14 @@ html {
     font-size: 62.5%;
     color: rgba(0, 0, 0, 0.87);
     background: #E1F5FE;
+    height: 100%;
 }
 
 body {
     font-size: 16px;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 4rem
 }
 
 h1 {
@@ -39,10 +43,13 @@ header {
 }
 
 footer {
-    float: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
     margin: 1rem auto;
     height: 4rem;
-    bottom: 0;
     text-align: center;
 }
 
@@ -264,12 +271,14 @@ button::after {
 
 #close-button {
     cursor: pointer;
-    margin: 0 0 0 2%;
+    margin: 0 2%;
+    text-align: right;
 }
 
 #readplayer {
     cursor: pointer;
     width: 100%;
+    height: 30rem;
     font-size: 10vmin;
     text-align: center;
     display: flex;

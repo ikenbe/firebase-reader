@@ -2,9 +2,11 @@
 <html>
 
 <head>
+    <title>字流</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link defer rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- load CSS -->
     <link rel="stylesheet" href="./style.css">
@@ -15,55 +17,76 @@
 </head>
 
 <body class="">
-    <header class="header">
-        <h1>Rapid Reader RAP 阅读</h1>
-    </header>
-    <div class="main" id="main">
-
-        <div class="card">
-            <div class="card-content white-text">
-                <div class="card-title">输入即将阅读的文字：</div>
-                <textarea class="materialize-textarea textarea" id="inputArea"></textarea>
-            </div>
-            <div class="controlcontainer">
-                <button class="controlbutton" id="add-text"><i class="material-icons">note_add</i></button>
-            </div>
-            <div class="controlcontainer">
-            </div>
+    <aside class="mdc-drawer mdc-drawer--dismissible">
+        <div class="mdc-drawer__content">
+            <nav class="mdc-list">
+                <a class="mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+                    <span class="mdc-list-item__text">Inbox</span>
+                </a>
+                <a class="mdc-list-item" href="#">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                    <span class="mdc-list-item__text">Outgoing</span>
+                </a>
+                <a class="mdc-list-item" href="#">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                    <span class="mdc-list-item__text">Drafts</span>
+                </a>
+            </nav>
         </div>
+    </aside>
 
-
-        <div id="listContainer">
-        </div>
-        <div class="read-container">
-            <div id="close-button"><i class="material-icons">clear</i></div>
-            <div id="readplayer">
-                <div class="playergrid col-2" id="">
-                    <pretext></pretext>
-                </div>
-                <div class="playergrid col-6">
-                    <current></current>
-                </div>
-                <div class="playergrid col-2">
-                    <postext></postext>
-                </div>
-            </div>
-            <div class="read-control">
-                <div class="slidecontainer">
-                    <div>SPEED</div>
-                    <input type="range" min="-100" max="100" value="0" class="slider" id="speed-slider">
+    <div class="mdc-drawer-app-content">
+        <div class="main" id="main">
+            <div class="card">
+                <div class="card-content white-text">
+                    <div class="card-title">输入即将阅读的文字：</div>
+                    <textarea class="materialize-textarea textarea" id="inputArea"></textarea>
                 </div>
                 <div class="controlcontainer">
-                    <button class="controlbutton" id="pause-stream"><i class="material-icons">pause</i></button>
+                    <button class="controlbutton" id="add-text"><i class="material-icons">note_add</i></button>
                 </div>
                 <div class="controlcontainer">
-                    <button class="controlbutton" id="replay"><i class="material-icons">replay</i></button>
+                </div>
+            </div>
+
+
+            <div id="listContainer">
+            </div>
+            <div class="read-container">
+                <div id="close-button"><i class="material-icons">clear</i></div>
+                <div id="readplayer">
+                    <div class="playergrid col-2" id="">
+                        <pretext></pretext>
+                    </div>
+                    <div class="playergrid col-6">
+                        <current></current>
+                    </div>
+                    <div class="playergrid col-2">
+                        <postext></postext>
+                    </div>
+                </div>
+                <div class="read-control">
+                    <div class="slidecontainer">
+                        <div>SPEED</div>
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="speed-slider">
+                    </div>
+                    <div class="controlcontainer">
+                        <button class="controlbutton" id="pause-stream"><i class="material-icons">pause</i></button>
+                    </div>
+                    <div class="controlcontainer">
+                        <button class="controlbutton" id="replay"><i class="material-icons">replay</i></button>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <footer>iKen 2018</footer>
     </div>
-    <!-- Footer -->
-    <footer>iKen 2018</footer>
+    <header class="header">
+        <h1>字流</h1>
+    </header>
+
     <!-- SCRIPTS ADD BELOW -->
     <script src="./app.js"></script>
 </body>

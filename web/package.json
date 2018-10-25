@@ -1,0 +1,23 @@
+{
+  "name": "firebase-reader-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "packed.js",
+  "dependencies": {
+    "@material/drawer": "^0.40.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ikenbe/firebase-reader.git"
+  },
+  "author": "iKen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ikenbe/firebase-reader/issues"
+  },
+  "homepage": "https://github.com/ikenbe/firebase-reader#readme"
+}
