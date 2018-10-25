@@ -3,3 +3,5 @@
 \%RESOURCE_DIR%\*
 firebase-debug.log
 .firebase/hosting.d2Vi.cache
+deploy.cmd
+\web\node_modules\*
